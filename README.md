@@ -1,6 +1,6 @@
 <div align = center>
 
-![2주차연습](https://github.com/LikeLion-at-CAU-12th/Inyoung-Hwang/assets/119143699/71ca949e-5519-4fc8-a544-29ea2a5f0e21)
+![어흥](https://github.com/LikeLion-at-CAU-12th/lnYoung-Hwang/assets/119143699/7211c210-3a16-4743-b153-c9665cb81c9a)
 
 ----
 
