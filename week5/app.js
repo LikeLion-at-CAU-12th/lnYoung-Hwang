@@ -141,7 +141,15 @@ function printResult(myChoice, comChoice) {
 function resetGame() {
     let confirmReset = confirm("Are you sure to reset the game?") 
     if (confirmReset == true) {
-        location.reload();
+        score[0] = 0;
+        score[1] = 0;
+        myScoreText.innerText = score[0];
+        comScoreText.innerText = score[1];
+        resultText.innerHTML = "Let's <br> Play <br> a game";
+        
+        for(let i = 0; i < congrats.length; i++) {
+            congrats[i].style.display = "none";
+        }
     }
 }
 
@@ -189,7 +197,6 @@ function darkMode(){
         resetBtn.style.backgroundColor = "black";
         resetBtn.style.color = "white";
         
-
         currentMode = false;
     }
     
