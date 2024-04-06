@@ -126,7 +126,7 @@ function printResult(myChoice, comChoice) {
     //졌을 때
     else {
         resultText.innerText = "Lose";
-        score[1]--;
+        score[1]++;
 
         //축하 gif 안보이게
         for(let i = 0; i < congrats.length; i++) {
@@ -184,7 +184,7 @@ function darkMode(){
         
         bodyTag[0].style.backgroundColor = "white";
 
-        darkBtn.innerText = "black Mode";
+        darkBtn.innerText = "Dark Mode";
         
         resetBtn.style.backgroundColor = "black";
         resetBtn.style.color = "white";
