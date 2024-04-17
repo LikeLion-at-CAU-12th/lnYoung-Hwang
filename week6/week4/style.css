@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR&display=swap');
+
+* {
+    font-family: "IBM Plex Sans KR", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+header{
+    font-size: 3.5rem;
+    align-self: flex-start;
+    margin-top: 5vw;
+    margin-left: 16vw;
+}
+
+#container{
+    margin: auto;
+    background-color: rgb(222, 246, 246);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+hr{
+    border: solid 0.09vw rgb(193, 193, 193);
+    width: 85%;
+}
+
+#intro{
+    display: flex;
+    margin-top: 6vw;
+}
+
+#intro_img{
+    width: 28vw;
+    height: 28vw;
+}
+
+#intro_names{
+    font-size: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5vw;
+    justify-content: center;
+}
+
+#intro_FE{
+    font-size: 2.5rem;
+    margin-top: 1vw;
+    margin-bottom: 3vw;
+    border: 0.2rem groove black;
+    background-color: beige;
+}
+
+#intro_des{
+    font-size: 2.7rem;
+    text-align: center;
+}
+
+section{
+    display:flex;
+    justify-content: center;
+    margin-top: 7vw;
+    margin-bottom: 7vw;
+}
+
+.title{
+    font-size: 3.8rem;
+    font-weight: bold;
+    margin: 3vw 0 2vw 0;
+}
+
+.contents{
+    font-size: 3.2rem;
+    margin-top: 0.2vw;
+    font-weight: bold;
+}
+
+#edu{
+    background-color: rgb(235, 251, 249);
+    margin: 5vw 5vw;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-basis: 30%;
+}
+
+#edu_major{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1.2vw;
+}
+
+#edu_img{
+    width: 18%;
+    margin-bottom: 4vw;
+}
+
+#edu_major_line{
+    margin-bottom: 3vw;
+}
+
+#stacks{
+    background-color: rgb(235, 251, 249);
+    margin: 5vw 5vw;
+    margin-bottom: 5vw;
+    border-radius: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#stacks_line{
+    margin: 1vw;
+}
+
+#stacks_line2{
+    margin: 1vw;
+    margin-bottom: 3vw;
+}
+
+#stacks_item{
+    font-size: 2.8rem;
+    border: 0.4rem outset rgb(75, 164, 212);
+    background-color: rgba(84, 180, 231, 0.094);
+    margin: 0.4vw;
+    border-radius: 0.5rem;
+}
+
+#spec{
+    display: flex;
+    background-color: rgb(235, 251, 249);
+    margin: 5vw 5vw;
+    border-radius: 1.5rem;
+    justify-content: space-evenly;
+}
+
+.spec_item{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 3vw;
+}
+
+.spec_title{
+
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1.3vw;
+    margin-left: 7vw;
+}
+
+
+.spec_title_des{
+    background-image: url("images/cloud.png");
+    background-size: 9vw 5vw;
+    width: 9vw ;
+    height : 5vw;
+    display: flex;
+    margin-top: 3vw;
+    text-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+}
+
+ul{
+    font-size: 2.4rem;
+    list-style: none;
+    margin-bottom: 3vw;
+}
+
+li::before{
+    content:'🌟 '
+}
+
+#info{
+    display:flex;
+    justify-content: space-evenly;
+}
+
+footer{
+    display: block;
+    margin-top: 6vw;
+    margin-bottom: 4vw;
+    width:15%;
+}
+
+#info_github{
+    width: 120%;
+    text-align : center;
+}
+
+#info_insta{
+    width: 120%;
+    text-align : center;
+}
+
+@media all and (max-width: 1200px){
+    #intro{
+        flex-direction: column;
+        align-items: center;
+    }
+    #spec{
+        flex-direction: column;
+    }
+}
