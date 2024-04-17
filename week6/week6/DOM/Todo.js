@@ -1,5 +1,6 @@
-import Button from "./Button.js";
+
 import Div from "./Div.js";
+import Img from "./Img.js";
 
 //todo를 생성하는 역할. Div, Button 인스턴스를 만들어서 
 //todo 한 줄에 대한 텍스트, 버튼..을 종합하여 todo div 태그를 만드는 역할
@@ -8,8 +9,13 @@ class Todo{
     constructor(todo){
         this.row = new Div('', 'row').node; //row : 해당하는 노드
         this.textBox = new Div(todo, 'text-box');
-        this.completeBtn = new Button('완료', 'complete-btn');
-        this.delBtn = new Button('삭제', 'del-btn');
+
+        //Button 클래스를 이용하는 대신 Img 클래스를 이용!
+        //사용하지 않는 Button 태그 지움
+        this.completeBtn = new Img ('complete-btn');
+        this.delBtn = new Img ('del-btn');
+        //this.completeBtn = new Button('완료', 'complete-btn');
+        //this.delBtn = new Button('삭제', 'del-btn');
     }
 
     //만든 tag들을 종합하여 하나의 dom 요소로 만드는 기능

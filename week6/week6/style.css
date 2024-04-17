@@ -114,8 +114,11 @@ button{
     padding-bottom: 10px;
 }
 .complete-btn{
-    color: white;
-    background-color: #4d81b1;
+    content: url(images/check.png);
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
+    margin-left : 13%;
 }
 .complete-btn:hover{
     cursor: pointer;
@@ -123,19 +126,22 @@ button{
 }
 
 .del-btn{
-    color: white;
-    background-color: #5e5e5e;
+    content: url(images/delete.png);
+    width: 2rem;
+    height: 2rem;
+    object-fit: cover;
 }
 .del-btn:hover{
     cursor: pointer;
     background-color: #e20000;
+    object-fit: cover;
 }
 
-.done-text{
-    text-decoration: line-through;
-    color: #808080;
-}
 
 .done-btn{
-    background-color: #5e5e5e;
+    content: url(images/undo.png);
+    width: 2rem ;
+    height: 2rem;
+    object-fit: cover;
+    margin-left : 13%;
 }

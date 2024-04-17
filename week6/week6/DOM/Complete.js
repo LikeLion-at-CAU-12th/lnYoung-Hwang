@@ -1,7 +1,6 @@
-import Button from "./Button.js";
+
 import Div from "./Div.js";
-import TodoController from "../controller/TodoController.js";
-import Todo from "./Todo.js";
+import Img from "./Img.js";
 
 
 class Complete {
@@ -9,10 +8,15 @@ class Complete {
         //DOM 생성
         this.row = new Div('', 'row').node; //row : 해당하는 노드
         this.textBox = new Div(completeTodo, 'text-box');
-        this.doneBtn = new Button('미완', 'done-btn');
-        this.delBtn = new Button('삭제', 'del-btn');
+
+        //Button 클래스를 이용하는 대신 Img 클래스를 이용!
+        //사용하지 않는 Button 태그 지움
+        this.doneBtn = new Img('done-btn');
+        this.delBtn = new Img('del-btn');
+        //this.doneBtn = new Button('미완', 'done-btn');
+        //this.delBtn = new Button('삭제', 'del-btn');
         //this.innerNode.classList.add('done-text');
-        //생기기 전에 classList.add 호출해서 오류 발생
+        //생기기 전에 classList.add 호출해서 오류 발생했었음 ..
     }
     addRow() {
         [this.textBox, this.doneBtn, this.delBtn].forEach(
