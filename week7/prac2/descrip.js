@@ -32,20 +32,36 @@ async function getDetailData() {
     const datas = await DetailtoJson.response.body.items.item;
 
     //html 화면 구성
+    const title = document.querySelector('#title');
+    const where = document.querySelector('#where');
     const image = document.querySelector('#detailImg');
     const date = document.querySelector('#date');
     const photoBy = document.querySelector('#photoBy');
     const keyWord = document.querySelector('#keyWord');
 
+    //console.log(datas[receivedIndex]);
+    let keyWordLis = datas[receivedIndex].galSearchKeyword.split(',');
+
     //날짜 보기 좋은 형태로 파싱
     dateString = parseDate(datas[receivedIndex].galCreatedtime);
 
     image.src = datas[receivedIndex].galWebImageUrl;
-    date.innerText = dateString;
-    photoBy.innerText = datas[receivedIndex].galPhotographer;
-    keyWord.innerText = datas[receivedIndex].galSearchKeyword;
+    title.innerText = keyWordLis[0];
+    where.innerText = `위치 : ${keyWordLis[1]}`;
+    date.innerText = `날짜 : ${dateString}`;
+    photoBy.innerText = `촬영자 : ${datas[receivedIndex].galPhotographer}`;
 
-    console.log(image.src);
+
+    //키워드 보기 좋은 형태로 파싱
+    keyWordLis = keyWordLis.slice(2);
+    let parseKey = keyWordLis.map((word)=>word.trim()); //문자열 앞뒤 공백 제거
+    let sent = "";
+    //키워드 앞에 해시태그 추가
+    for(i in parseKey) {
+        sent = sent + `#${parseKey[i]}` + " ";
+    }
+
+    keyWord.innerText = sent;
 }
 
 //날짜 파싱해주는 함수

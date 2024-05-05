@@ -23,14 +23,11 @@ const option = {
 
     count ++;
     const fetchData = await fetch(url);
-    console.log(fetchData);
  
     //fetch 통해 받은 promise 객체의 HTTP 응답 body 텍스트를 json 형식으로 바꿈
     const toJson = await fetchData.json();
-    console.log(toJson);
 
     const datas = await toJson.response.body.items.item;
-    console.log(datas);
 
     datas.map((data,i)=>{
         //i는 배열(datas)의 현재 요소의 인덱스를 나타냄
