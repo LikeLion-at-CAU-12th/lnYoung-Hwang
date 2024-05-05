@@ -8,14 +8,26 @@
     <link rel="stylesheet" href="../css/descrip.css">
 </head>
 <body>
-    <div id="container">
-        <div id="img">
-            사진
-        </div>
+    <div id="detailContainer">
+        <img id="detailImg" src="" alt="사진불러오기 오류">
         <div id="content">
-            내용쓸거임
+            <div id="date">
+
+            </div>
+            <div id="photoBy">
+
+            </div>
+            <div id="keyWord">
+
+            </div>
         </div>
     </div>
-    <button onclick="location.href='index.html'">뒤로가기</button>
+    <button onclick="history.back()">뒤로가기</button>
+    <script src="./descrip.js">
+        /*
+        window.onload = function(){
+            getDetailData();
+        }*/
+    </script>
 </body>
 </html>

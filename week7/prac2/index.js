@@ -16,7 +16,7 @@ const option = {
 
   let count = -1;
 
-async function getData() {
+  async function getData() {
     //const random = Math.floor(Math.random()*100 + 1);
     const url = `${baseURL}/galleryList1?numOfRows=${option.numofRows}&MobileApp=${option.MobileApp}&MobileOS=${option.MobileOS}&arrange=${option.arrange}&_type=${option._type}&pageNo=${option.pageNo}&serviceKey=${option.serviceKey}`;
     //baseURL + 뒤의 url 붙여서
@@ -48,8 +48,11 @@ async function getData() {
 
         const btn = document.createElement('button');
         btn.innerText='더보기';
-        
-        btn.id = `${i+1}`;
+
+        //현재 데이터 인덱스 정보를 url 뒤에 붙여 다른 html에 데이터 전송
+        btn.addEventListener("click", ()=>{
+            location.href = `descrip.html?${i}`;
+        });
 
         list.appendChild(image);
         list.appendChild(info);
@@ -58,4 +61,5 @@ async function getData() {
         container.appendChild(list);
     })
 }
+
 
