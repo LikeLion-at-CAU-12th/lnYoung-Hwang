@@ -14,10 +14,10 @@ const option = {
     pageNo: 1
   };
 
+
   let count = -1;
 
   async function getData() {
-    //const random = Math.floor(Math.random()*100 + 1);
     const url = `${baseURL}/galleryList1?numOfRows=${option.numofRows}&MobileApp=${option.MobileApp}&MobileOS=${option.MobileOS}&arrange=${option.arrange}&_type=${option._type}&pageNo=${option.pageNo}&serviceKey=${option.serviceKey}`;
     //baseURL + 뒤의 url 붙여서
 
@@ -28,6 +28,8 @@ const option = {
     const toJson = await fetchData.json();
 
     const datas = await toJson.response.body.items.item;
+
+    //const urlParams = new URLSearchParams('?')
 
     datas.map((data,i)=>{
         //i는 배열(datas)의 현재 요소의 인덱스를 나타냄
@@ -48,7 +50,7 @@ const option = {
 
         //현재 데이터 인덱스 정보를 url 뒤에 붙여 다른 html에 데이터 전송
         btn.addEventListener("click", ()=>{
-            location.href = `descrip.html?${i}`;
+            location.href = `descrip.html?img=${data.galWebImageUrl}&title=${data.galTitle}&where=${data.galPhotographyLocation}&key=${data.galSearchKeyword}&created=${data.galCreatedtime}&photoBy=${data.galPhotographer}`;
         });
 
         list.appendChild(image);
