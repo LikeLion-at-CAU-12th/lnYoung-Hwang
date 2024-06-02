@@ -5,7 +5,7 @@ import UserCard from './UserCard';
 const UserSection = ({userData}) => {
     return (
        <UserSecLayout>
-            <UserCardBox>{userData && userData.map((data, idx)=>
+            <UserCardBox>{userData.map((data, idx)=>
             <UserCard data={data} key={idx}/>
             )}</UserCardBox>
         </UserSecLayout>

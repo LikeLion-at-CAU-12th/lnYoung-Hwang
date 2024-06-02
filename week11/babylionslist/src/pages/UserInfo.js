@@ -18,7 +18,8 @@ const UserInfo = () => {
                 <UserFilter 
                 setFilter={setFilter}
                 setUserData={setUserData} 
-                setCurPage={setCurPage}/>
+                setCurPage={setCurPage}
+                filter={filter}/>
                 <UserSection userData={userData}/>
                 
                 { filter === "all" && <PageSelection 

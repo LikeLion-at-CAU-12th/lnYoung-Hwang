@@ -5,7 +5,7 @@ import { getGenderUser, getPerPage, getPartUser } from '../../apis/userlist';
 
 /* 필터 버튼을 눌러 API 호출 */
 
-const UserFilter = ({setFilter, setUserData, setCurPage}) => {
+const UserFilter = ({setFilter, setUserData, setCurPage, filter}) => {
     const handleClick = async (type, param) => {
         if(type === "all"){
             const response = await getPerPage(1);
@@ -23,16 +23,16 @@ const UserFilter = ({setFilter, setUserData, setCurPage}) => {
             const response = await getPartUser(param);
             console.log(response);
             setUserData(response);
-            
             setCurPage(1);
         }
         setFilter(param); //다른 값으로도 변경 가능
+        console.log(param);
     }
     return (
         <FilterLayout>
             {filterType.map(
                 (data, idx) =>
-                <FilterBox key={idx} onClick={() => handleClick(data.type, data.param)}>{data.title}</FilterBox>
+                <FilterBox key={idx} onClick={() => handleClick(data.type, data.param)} $active={data.param === filter ? true : false} >{data.title}</FilterBox>
             )}
         </FilterLayout>
     );
@@ -58,7 +58,7 @@ const FilterLayout = styled.div`
 const FilterBox = styled.div`
     display: flex;
     padding: 1rem 4rem 1rem 4rem;
-    background-color: "#c9c9c9";
+    color: ${(props) => props.$active ? 'rgba(255, 170, 100, 1)' : "black"};
     border-radius: 1rem;
     font-size: 3rem;
     white-space: nowrap;

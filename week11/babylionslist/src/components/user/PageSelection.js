@@ -34,4 +34,5 @@ const PageBox = styled.div`
         cursor: pointer;
         color: white;
     }
+    
 `
