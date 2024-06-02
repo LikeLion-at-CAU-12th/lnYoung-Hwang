@@ -3,25 +3,36 @@ import styled from 'styled-components';
 import { filterType } from '../../constants/filterType';
 import { getGenderUser, getPerPage, getPartUser } from '../../apis/userlist';
 
+
 /* 필터 버튼을 눌러 API 호출 */
 
-const UserFilter = ({setFilter, setUserData, setCurPage, filter}) => {
+
+
+const UserFilter = ({setFilter, setUserData, setCurPage, setTotalNum, setTotalData, totalData, offset, filter}) => {
+
     const handleClick = async (type, param) => {
+
         if(type === "all"){
-            const response = await getPerPage(1);
+            let response = await getPerPage(0);
+            setTotalData(response);
             //response값을 저장하기 위해서 새로운 상태(state)가 필요하다!
             //useState를 이용해 이 값을 저장해주자~
-            setUserData(response);
-            console.log(response);
+
+            setTotalNum(response.length); // 총 명수
+            
+             //offset 설정에 따라 자르기
+
+            setUserData(response.slice(0,offset));
+            //처음 All 클릭 시 첫번째 값들 나오도록
+        
+            console.log(response[0]);
             setCurPage(1);
         } else if (type === "gender"){
             const response = await getGenderUser(param);
             setUserData(response);
-            console.log(response);
             setCurPage(1);
         } else if (type === "part"){
             const response = await getPartUser(param);
-            console.log(response);
             setUserData(response);
             setCurPage(1);
         }
@@ -37,6 +48,8 @@ const UserFilter = ({setFilter, setUserData, setCurPage, filter}) => {
         </FilterLayout>
     );
 };
+
+
 
 export default UserFilter;
 

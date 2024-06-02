@@ -2,14 +2,26 @@ import React from 'react';
 import styled from 'styled-components';
 import { getPerPage } from '../../apis/userlist';
 
-const PageSelection = ({curPage, setUserData, setCurPage}) => {
-    const handleClick = async (page) => {
-        const response = await getPerPage(page)
-        setUserData(response);
+const PageSelection = ({userData,curPage, offset, totalNum, totalData, setUserData, setCurPage}) => {
+
+    function generateArray(x) {
+        const result = [];
+        for (let i = 1; i <= x; i++) {
+          result.push(i);
+        }
+        return result;
+      }
+
+    let endPage = totalNum/offset;
+    let pages = generateArray(endPage);
+    //offset에 따라 결정되는 n에 따라 1~n까지의 배열 저장
+
+    const handleClick = (page) => {
         setCurPage(page);
+        setUserData(totalData.slice(offset*(page-1), offset*page));
     }
     return (
-        <SelectionLayout>{[1,2,3,4,5,6].map(
+        <SelectionLayout>{pages.map(
             (val)=>
             <PageBox key={val} 
             $active={val === curPage ? true : false} 

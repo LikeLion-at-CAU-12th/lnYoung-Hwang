@@ -8,9 +8,13 @@ import PageSelection from '../components/user/PageSelection';
 /* 부모인 UserInfo에서 state를 선언해야 자식 컴포넌트에 props로 전달 가능!*/
 
 const UserInfo = () => {
+    const [totalData, setTotalData] = useState([]);
     const [userData, setUserData] = useState([]);
     const [curPage, setCurPage] = useState(); //초기 값 === undefined
-    const [filter, setFilter] = useState("all") //색상 넣을 때 이용!
+    const [filter, setFilter] = useState("all"); //색상 넣을 때 이용!
+    const [offset, setOffset] = useState("5");
+    const [totalNum, setTotalNum] = useState("0");
+
     return (
         <MainLayout>
             <h1>🦁12기 아기사자 리스트🦁</h1>
@@ -19,11 +23,18 @@ const UserInfo = () => {
                 setFilter={setFilter}
                 setUserData={setUserData} 
                 setCurPage={setCurPage}
+                setTotalNum={setTotalNum}
+                setTotalData={setTotalData}
+                totalData={totalData}
+                offset={offset}
                 filter={filter}/>
-                <UserSection userData={userData}/>
-                
+                <UserSection userData={userData}/>            
                 { filter === "all" && <PageSelection 
+                userData={userData}
                 curPage={curPage}
+                offset={offset}
+                totalNum={totalNum}
+                totalData={totalData}
                 setUserData={setUserData}
                 setCurPage={setCurPage}/>}
             </ContentBox>
