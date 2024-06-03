@@ -8,12 +8,17 @@ import PageSelection from '../components/user/PageSelection';
 /* 부모인 UserInfo에서 state를 선언해야 자식 컴포넌트에 props로 전달 가능!*/
 
 const UserInfo = () => {
-    const [totalData, setTotalData] = useState([]);
-    const [userData, setUserData] = useState([]);
+    const [totalData, setTotalData] = useState([]); //자르기 전 전체 데이터
+    const [userData, setUserData] = useState([]); //현재 페이지에서 보여줄 데이터
     const [curPage, setCurPage] = useState(); //초기 값 === undefined
     const [filter, setFilter] = useState("all"); //색상 넣을 때 이용!
-    const [offset, setOffset] = useState("5");
-    const [totalNum, setTotalNum] = useState("0");
+    const [pages, setPages] = useState([]); //각 필터 별 목차
+    const [offset, setOffset] = useState("5"); //보여줄 카드 개수
+
+    const handleChange = (e)=>{
+        setOffset(e.target.value);
+        setUserData(totalData.slice(offset*(curPage-1), offset*curPage));
+    };
 
     return (
         <MainLayout>
@@ -23,20 +28,33 @@ const UserInfo = () => {
                 setFilter={setFilter}
                 setUserData={setUserData} 
                 setCurPage={setCurPage}
-                setTotalNum={setTotalNum}
                 setTotalData={setTotalData}
                 totalData={totalData}
                 offset={offset}
-                filter={filter}/>
+                filter={filter}
+                curPage ={curPage}
+                setPages={setPages}
+                />
+                <ViewLayout>
+                    <label htmlFor ="of">view</label>
+                    <select value={offset} name="offset" id="of" onChange={handleChange}>
+                    {[5,6,10,15,30].map((val) => 
+                        <option key={val} value={val}>{val}</option>)}
+                    </select> 
+
+                </ViewLayout>
+
                 <UserSection userData={userData}/>            
-                { filter === "all" && <PageSelection 
+                <PageSelection 
                 userData={userData}
                 curPage={curPage}
                 offset={offset}
-                totalNum={totalNum}
                 totalData={totalData}
+                filter={filter}
                 setUserData={setUserData}
-                setCurPage={setCurPage}/>}
+                setCurPage={setCurPage}
+                setPages={setPages}
+                pages={pages}/>
             </ContentBox>
         </MainLayout>
     );
@@ -65,4 +83,15 @@ const ContentBox = styled.div`
     width: 95%;
     border-radius: 1rem;
     border: 5px solid #ff7710;
+`
+
+const ViewLayout = styled.div`
+    display: flex;
+    align-self: flex-end;
+    margin-right: 3%;
+    margin-top: 2%;
+    & > label{
+        font-size: 2.1rem;
+        margin-right: 10%;
+    }
 `

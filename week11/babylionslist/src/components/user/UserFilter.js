@@ -5,10 +5,15 @@ import { getGenderUser, getPerPage, getPartUser } from '../../apis/userlist';
 
 
 /* 필터 버튼을 눌러 API 호출 */
-
-
-
-const UserFilter = ({setFilter, setUserData, setCurPage, setTotalNum, setTotalData, totalData, offset, filter}) => {
+const UserFilter = ({setFilter, setUserData, setCurPage, setTotalData, offset, filter, curPage, setPages}) => {
+    
+    const generateArray = (x) => {
+        const result = [];
+        for (let i = 1; i <= x; i++) {
+          result.push(i);
+        }
+        return result;
+    };
 
     const handleClick = async (type, param) => {
 
@@ -18,26 +23,38 @@ const UserFilter = ({setFilter, setUserData, setCurPage, setTotalNum, setTotalDa
             //response값을 저장하기 위해서 새로운 상태(state)가 필요하다!
             //useState를 이용해 이 값을 저장해주자~
 
-            setTotalNum(response.length); // 총 명수
-            
-             //offset 설정에 따라 자르기
+            //offset 설정에 따라 자르기
+            const endPage = Math.ceil(response.length/offset);
+            setPages(generateArray(endPage));
 
-            setUserData(response.slice(0,offset));
             //처음 All 클릭 시 첫번째 값들 나오도록
-        
-            console.log(response[0]);
+            setUserData(response.slice(0,offset));
             setCurPage(1);
+
         } else if (type === "gender"){
             const response = await getGenderUser(param);
-            setUserData(response);
+            setTotalData(response);
+
+            let totalNum = response.length;
+            const endPage = Math.ceil(totalNum/offset);
+
+            //pageSelection 목차 만들기
+            setPages(generateArray(endPage));
+            setUserData(response.slice(0, offset));
             setCurPage(1);
+
         } else if (type === "part"){
             const response = await getPartUser(param);
-            setUserData(response);
+            setTotalData(response);
+
+            let totalNum = response.length;
+            const endPage = Math.ceil(totalNum/offset);
+
+            setPages(generateArray(endPage))
+            setUserData(response.slice(0, offset));
             setCurPage(1);
         }
         setFilter(param); //다른 값으로도 변경 가능
-        console.log(param);
     }
     return (
         <FilterLayout>
@@ -48,7 +65,6 @@ const UserFilter = ({setFilter, setUserData, setCurPage, setTotalNum, setTotalDa
         </FilterLayout>
     );
 };
-
 
 
 export default UserFilter;
