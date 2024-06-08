@@ -14,3 +14,8 @@ export const getScore = async(answers) => {
     return response.data.correctCount;
 }
 
+export const getResult = async(score) => {
+    const response = await axios.get(`${baseURL}liontest/result/${score}`);
+    return response.data;
+}
+
