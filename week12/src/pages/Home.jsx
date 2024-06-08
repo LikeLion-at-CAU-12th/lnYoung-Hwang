@@ -5,9 +5,12 @@ import styled from "styled-components";
 const Home = () => {
   return (
     <MenuDom>
-      <Title>My Library</Title>
+      <Title>Week 12 Session</Title>
       <StyledLink to="/books">
-        📚 Book List
+        📚 Library
+      </StyledLink>
+      <StyledLink to="/liontest">
+        🦁 멋사인 테스트
       </StyledLink>
     </MenuDom>
   )
@@ -31,7 +34,7 @@ const Title = styled.div`
   font-weight: 700;
 `;
 
-/* 이미 만들어진 태그를 태그로 바꿀 수 있음 */
+/* 이미 만들어진 태그를 다른 태그로 바꿀 수 있음 */
 const StyledLink = styled(Link)`
   display: flex;
   justify-content: center;

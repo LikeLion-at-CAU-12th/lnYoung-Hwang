@@ -3,6 +3,7 @@ import {Route, Routes} from 'react-router-dom';
 import Home from "./pages/Home";
 import BookList from "./pages/BookList";
 import BookDetail from "./pages/BookDetail";
+import LionTest from "./pages/LionTest";
 
 
 function App() {
@@ -13,6 +14,7 @@ function App() {
         <Route path="/books" element={<BookList />}>
             <Route path=":id" element={<BookDetail />}/>
         </Route>
+        <Route path="/liontest" element={<LionTest />} />
       </Routes>
     </AppDom>
   );

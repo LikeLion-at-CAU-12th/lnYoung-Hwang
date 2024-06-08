@@ -15,6 +15,7 @@ const BookDetail = () => {
     setLikes(likes + 1);
   };
 
+  //첫 렌더링 시 책 정보를 받아와 state에 담기
   useEffect(()=>{
     const fetchBooks = async()=>{
       const response = await axios.get('/databases/books.json');
@@ -30,10 +31,11 @@ const BookDetail = () => {
 
   const book = books.find((b)=>b.id === parseInt(id));
 
-  console.log(book);
-
-  /* useEffect가 실행되기 전에 book을 찾게 되어서 오류, 아래와 같이 짜기! */
-  /* books가 세팅 되기 전/후의 코드를 짜자.*/
+  // <books가 세팅 되기 전/후의 코드를 짜자.>
+  /*렌더링 되기 전에는 books에는 빈 배열이 들어있기 때문에,
+  위의 books.find가 실행되게 되면 book에는 undefined 값이 들어가게 된다.
+  그러면서 undefined의 속성(book.title, book.author 등)에 접근하면 오류가 발생하므로
+  undefined 에 접근하는 것을 막아 오류를 방지하기 위해 아래의 코드를 짠다. */
   if(!book){return(
     <div>찾는 책이 없습니다.</div>
   );
