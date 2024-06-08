@@ -54,11 +54,7 @@ const ResultLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: #ffedbd;
   border-radius: 20px;
-  padding : 3vw;
-  padding-left: 5vw;
-  padding-right: 5vw;
 `
 
 const ResultTitleLayout = styled.div`
