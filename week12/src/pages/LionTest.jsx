@@ -5,7 +5,7 @@ import styled from 'styled-components';
 
 const LionTest = () => {
     const[questions, setQuestions] = useState([]);
-    const [answer, setAnswer] = useState([]);
+    const [answer, setAnswer] = useState([0, 0, 0, 0, 0]);
 
     useEffect(() => {
         const fetchData = async() => {
@@ -15,19 +15,34 @@ const LionTest = () => {
         fetchData();
     },[]);
 
+    const markAnswer = (Qidx, Aidx, e) => {
+        const newAnswer = [...answer]; //이전에 체크한 답들에 추가적으로 새 답을 담기 위해
+        let Qid = Qidx - 1;
+        let Aid = Aidx + 1;
+        newAnswer[Qid] = Aid;
+        setAnswer(newAnswer);
+    }
+
   return (
     <TestLayout>
         <Title>🦁 당신의 멋사력은？</Title>
         {questions.map((data)=>(
-            <QuestionLayout key={data.id}>{data.question}
-                {data.choices.map((choice)=>(
-                    (<ChoiceLayout>{choice}</ChoiceLayout>)
+            <QuestionLayout key={data.id}>
+            <QuestionContent>Q{data.id}. {data.question}</QuestionContent>
+                {data.choices.map((choice, idx)=>(
+                    (<ChoiceLayout key={idx} 
+                        onClick={(e)=>{
+                        markAnswer(data.id, idx, e);
+                    }}
+                    $active={answer[data.id - 1] === idx+1 ? true : false}
+                    >{choice}</ChoiceLayout>)
                 ))}
             </QuestionLayout>
             ))}
+        <SubmitLayout>결과보기</SubmitLayout>
     </TestLayout>
     
-  )
+    )
 }
 
 export default LionTest;
@@ -36,6 +51,8 @@ const Title = styled.div`
     font-size: 30px;
     color: #535353;
     font-weight: 700;
+    margin-top: 8vw;
+    margin-bottom: 3vw;
 `
 
 const TestLayout = styled.div`
@@ -54,20 +71,35 @@ const QuestionLayout = styled.div`
     margin-top: 2vw;
     margin-bottom: 2vw;
 `
+const QuestionContent = styled.div`
+    margin-bottom: 2vw;
+    margin-top: 1vw;
+`
+
 const ChoiceLayout = styled.button`
     font-size: 20px;
     color: #535353;
-    font-weight: 700;
     width: 150px;
     height: 50px;
-    color: #4a4a4a;
-    background-color: #b8edfb;
     border-radius: 20px;
     cursor: pointer;
-    text-decoration: none;
-    font-weight: 500;
+    font-weight: 530;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     margin-top: 1vw;
     margin-bottom: 1vw;
+    background-color: ${(props) => props.$active ?  "#ffe08a" : "#b8edfb"};
     
+`
+const SubmitLayout = styled.button`
+    font-size: 20px;
+    font-weight: 700;
+    width: 180px;
+    height: 50px;
+    color: #4a4a4a;
+    border-radius: 5px;
+    background-color: #b8edfb;
+    cursor: pointer;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-top: 5vw;
+    margin-bottom: 10vw;
 `
