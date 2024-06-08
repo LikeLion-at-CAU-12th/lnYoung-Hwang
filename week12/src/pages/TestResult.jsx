@@ -9,10 +9,10 @@ const TestResult = () => {
     const [resultImg, setResultImg] = useState();
     const [resultTitle, setResultTitle] = useState();
 
+    //api 호출
     useEffect(()=>{
       const fetchData = async() => {
         const result = await getResult(score);
-        console.log(result);
         setResultImg(result.resultImg);
         setResultTitle(result.resultTitle);
       }
@@ -26,11 +26,10 @@ const TestResult = () => {
 
   return (
     <ResultLayout>
-    <Title>🐶🐍🦒🐥나의 멋사력은?🦁🐯🐒🐕☘️</Title>
-    <ScoreLayout>{score}/5</ScoreLayout>
-    
-    <ResultImgLayout src={`${resultImg}`}></ResultImgLayout>
-      <ResultTitleLayout>{resultTitle}</ResultTitleLayout>
+        <Title>🐶🐍🦒🐥나의 멋사력은?🦁🐯🐒🐕☘️</Title>
+        <ScoreLayout>{score}/5</ScoreLayout>
+        <ResultImgLayout src={`${resultImg}`} alt="이미지오류"></ResultImgLayout>
+        <ResultTitleLayout>{resultTitle}</ResultTitleLayout>
     </ResultLayout>
   )
 }
@@ -55,6 +54,11 @@ const ResultLayout = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #ffedbd;
+  border-radius: 20px;
+  padding : 3vw;
+  padding-left: 5vw;
+  padding-right: 5vw;
 `
 
 const ResultTitleLayout = styled.div`

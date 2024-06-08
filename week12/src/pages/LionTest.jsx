@@ -27,10 +27,9 @@ const LionTest = () => {
         setAnswer(newAnswer);
     }
 
-    
+    //채점하고 정답 페이지로 넘어가기
     const markScore = async() => {
         const score = await getScore(answer);
-        console.log(score);
         navigate(`/liontest/${score}`);
     }
 
@@ -39,10 +38,10 @@ const LionTest = () => {
         <Title>🦁 당신의 멋사력은？</Title>
         {questions.map((data)=>(
             <QuestionLayout key={data.id}>
-            <QuestionContent>Q{data.id}. {data.question}</QuestionContent>
+            <QuestionContent>𝐐{data.id}. {data.question}</QuestionContent>
                 {data.choices.map((choice, idx)=>(
                     (<ChoiceLayout key={idx} 
-                        onClick={(e)=>{
+                        onClick={()=>{
                         markAnswer(data.id, idx);
                     }}
                     $active={answer[data.id - 1] === idx+1 ? true : false}
@@ -63,13 +62,18 @@ const Title = styled.div`
     color: #535353;
     font-weight: 700;
     margin-top: 8vw;
-    margin-bottom: 3vw;
+    margin-bottom: 1vw;
 `
 
 const TestLayout = styled.div`
+    margin-top: 5vw;
+    margin-bottom: 5vw;
     align-items: center;
     display: flex;
     flex-direction: column;
+    width: 80%;
+    background-color: #bdf5f58f;
+    border-radius: 15px;
 
 `
 const QuestionLayout = styled.div`
@@ -79,18 +83,20 @@ const QuestionLayout = styled.div`
     font-size: 20px;
     color: #535353;
     font-weight: 700;
-    margin-top: 2vw;
-    margin-bottom: 2vw;
+    margin-top: 4vw;
+    margin-bottom: 4vw;
 `
 const QuestionContent = styled.div`
-    margin-bottom: 2vw;
+    margin: 3vw;
+    margin-bottom: 4vw;
     margin-top: 1vw;
+    width:70%;
 `
 
 const ChoiceLayout = styled.button`
     font-size: 20px;
     color: #535353;
-    width: 150px;
+    width: 180px;
     height: 50px;
     border-radius: 20px;
     cursor: pointer;
@@ -112,5 +118,5 @@ const SubmitLayout = styled.button`
     cursor: pointer;
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
     margin-top: 5vw;
-    margin-bottom: 10vw;
+    margin-bottom: 6vw;
 `
