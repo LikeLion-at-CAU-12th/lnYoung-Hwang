@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import {getQuestions} from '../apis/qlist.js';
+import {getQuestions, getScore} from '../apis/qlist.js';
 import styled from 'styled-components';
+import { useNavigate } from 'react-router-dom';
 
 
 const LionTest = () => {
     const[questions, setQuestions] = useState([]);
     const [answer, setAnswer] = useState([0, 0, 0, 0, 0]);
+    const navigate = useNavigate();
 
+    //문제 데이터 불러오기
     useEffect(() => {
         const fetchData = async() => {
             let questions = await getQuestions();
@@ -15,12 +18,20 @@ const LionTest = () => {
         fetchData();
     },[]);
 
-    const markAnswer = (Qidx, Aidx, e) => {
+    //고른 답 담는 함수
+    const markAnswer = (Qidx, Aidx) => {
         const newAnswer = [...answer]; //이전에 체크한 답들에 추가적으로 새 답을 담기 위해
         let Qid = Qidx - 1;
         let Aid = Aidx + 1;
         newAnswer[Qid] = Aid;
         setAnswer(newAnswer);
+    }
+
+    
+    const markScore = async() => {
+        const score = await getScore(answer);
+        console.log(score);
+        navigate(`/liontest/${score}`);
     }
 
   return (
@@ -32,14 +43,14 @@ const LionTest = () => {
                 {data.choices.map((choice, idx)=>(
                     (<ChoiceLayout key={idx} 
                         onClick={(e)=>{
-                        markAnswer(data.id, idx, e);
+                        markAnswer(data.id, idx);
                     }}
                     $active={answer[data.id - 1] === idx+1 ? true : false}
                     >{choice}</ChoiceLayout>)
                 ))}
             </QuestionLayout>
             ))}
-        <SubmitLayout>결과보기</SubmitLayout>
+        <SubmitLayout onClick={markScore}>결과보기</SubmitLayout>
     </TestLayout>
     
     )

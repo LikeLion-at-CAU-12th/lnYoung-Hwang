@@ -4,6 +4,7 @@ import Home from "./pages/Home";
 import BookList from "./pages/BookList";
 import BookDetail from "./pages/BookDetail";
 import LionTest from "./pages/LionTest";
+import TestResult from "./pages/TestResult";
 
 
 function App() {
@@ -15,6 +16,7 @@ function App() {
             <Route path=":id" element={<BookDetail />}/>
         </Route>
         <Route path="/liontest" element={<LionTest />} />
+        <Route path="/liontest/:num" element={<TestResult />} />
       </Routes>
     </AppDom>
   );

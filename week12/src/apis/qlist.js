@@ -7,3 +7,10 @@ export const getQuestions = async() => {
     return response.data.questions;
 }
 
+export const getScore = async(answers) => {
+    const response = await axios.post(`${baseURL}liontest/result`,{
+        "answers" : answers
+    });
+    return response.data.correctCount;
+}
+
