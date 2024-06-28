@@ -1,9 +1,9 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import styled from "styled-components";
 import { Button } from './common';
 import { ThemeColorContext } from '../../context/context';
-import { useRecoilValue } from 'recoil';
-import { emailAtom, isSubmitedAtom, userNameAtom } from '../../recoil/atom';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { dateAtom, emailAtom, isSubmitedAtom, userNameAtom } from '../../recoil/atom';
 
 const Layout = ({children}) => {
     const context = useContext(ThemeColorContext);
@@ -11,6 +11,16 @@ const Layout = ({children}) => {
     const userName = useRecoilValue(userNameAtom);
     const email = useRecoilValue(emailAtom);
     const isSubmited = useRecoilValue(isSubmitedAtom);
+
+    const [date, setDate] = useRecoilState(dateAtom);
+
+    var arrDayStr = ['일','월','화','수','목','금','토'];
+    
+    useEffect(()=>{
+      var nowDate = new Date();
+      var parsedDate = nowDate.getFullYear() + '년 ' + (nowDate.getMonth()+1)+'월 '+nowDate.getDate()+'일 ('+arrDayStr[nowDate.getDay()]+')';
+      setDate(parsedDate);
+    },[]);
 
     const handleMode = (e) => {
         const value = e.target.value;
@@ -35,7 +45,10 @@ const Layout = ({children}) => {
             </Header>
             <div>{children}</div>
             <Footer mode={mode.main}>
-                {isSubmited ? `${userName}의 공간 | ${email}` : '2024 LikeLion FE'}
+              <div>{isSubmited ? `${userName}의 공간 | ${email}` : 'LikeLion FE'}</div>
+                
+                <div>{date}</div>
+                
             </Footer>
         </Wrapper>
     </ThemeColorContext.Provider>
@@ -66,8 +79,10 @@ const Header = styled.div`
 
 const Footer = styled.div`
   display: flex;
+  flex-direction: column;
   height: 50px;
   width: 100%;
+  padding: 2%;
   justify-content: center;
   align-items: center;
   background-color: ${(props) => props.mode};

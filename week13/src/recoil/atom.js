@@ -14,3 +14,8 @@ export const isSubmitedAtom = atom({
     key:'isSubmited',
     default: false,
 });
+
+export const dateAtom = atom({
+    key:'date',
+    default: '잠시만 기다려주세요'
+})
