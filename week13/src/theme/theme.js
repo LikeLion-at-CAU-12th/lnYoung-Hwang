@@ -2,23 +2,23 @@
 
 const blueTheme = {
     color: "blue",
-    main: "#3AB2FF",
+    main: "#B0E0E6",
     sub: "#C5F8FF",
-    button: "#6B95BC",
+    button: "#ADD8E6",
   };
   
   const greenTheme = {
     color: "green",
-    main: "#77E092",
+    main: "#8FBC8B",
     sub: "#CAFBE7",
-    button: "#00AC7C",
+    button: "#9FCF99",
   };
   
   const pinkTheme = {
     color: "pink",
-    main: "#FF82DF",
+    main: "#FFB6C1",
     sub: "#FFE5FF",
-    button: "#F697C5",
+    button: "#FFC0CC",
   };
   
 

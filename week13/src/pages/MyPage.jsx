@@ -25,13 +25,12 @@ const MyPage = () => {
       window.addEventListener('popstate', handleReset);
     }, [])
     
-
   return (
     <Wrapper>
         <Title>
             Welcome {userName}!
         </Title>
-        <Button mode={mode.button} onClick={handleReset}>리셋</Button>
+        <Button mode={mode.button} onClick={handleReset}>뒤로가기</Button>
     </Wrapper>
   )
 }

@@ -79,8 +79,8 @@ const Footer = styled.div`
   flex-direction: column;
   height: 50px;
   width: 100%;
-  padding: 2%;
-  justify-content: center;
+  padding: 30px;
+  justify-content: space-between;
   align-items: center;
   background-color: ${(props) => props.mode};
 `;

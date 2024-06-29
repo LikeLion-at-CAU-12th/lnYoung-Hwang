@@ -23,9 +23,11 @@ const Modal = ( {setModal} ) => {
   return (
     <ModalBackground>
       <Container>
-        <div>정보를 다시 한번 확인해주세요.</div>
-        <div>이름: {userName}</div>
-        <div>이메일: {email}</div>
+        <h3>정보를 다시 한번 확인해주세요.</h3>
+        <div>
+          <div>이름: {userName}</div>
+          <div>이메일: {email}</div>
+        </div>
         <Buttons>
           <Button onClick={()=>setModal(false)} mode={mode.button}>다시작성</Button>
           <Button onClick={handleConfirm} mode={mode.button}>확인</Button>
@@ -56,6 +58,14 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  & > div{
+    margin-top: 5vw;
+    margin-bottom: 2vw;
+  }
+  & > div > div {
+    font-size: 1.2rem;
+    margin: 1vw;
+  }
 `
 
 const Buttons = styled.div`

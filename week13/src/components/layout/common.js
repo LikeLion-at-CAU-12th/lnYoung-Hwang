@@ -13,7 +13,7 @@ export const Button = styled.button`
   background-color: ${(props) => props.mode};
   color: black;
   padding: 10px;
-  border-radius: 24px;
+  border-radius: 20px;
   cursor: pointer;
   margin-top: 10px;
   margin: 1vw;

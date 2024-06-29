@@ -1,6 +1,7 @@
 import React from 'react'
 import { emailAtom, userNameAtom } from '../../recoil/atom';
 import { useRecoilState } from 'recoil';
+import styled from 'styled-components';
 
 const Form = ({type, inputType}) => {
     const [userName, setUserName] = useRecoilState(userNameAtom);
@@ -17,10 +18,29 @@ const Form = ({type, inputType}) => {
     }
   return (
     <>
-    <div>{inputType}</div>
-    <input type={type} onChange={onChange}/>
+    <Container>
+      <InputType>{inputType}</InputType>
+      <Input type={type} onChange={onChange}/>
+    </Container>
     </>
   )
 }
 
 export default Form
+
+const Container = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin : 1vw;
+`
+
+const InputType = styled.span`
+  font-size: 1.1rem;
+  margin-right: 2vw;
+`
+
+const Input = styled.input`
+  height : 23px;
+`
