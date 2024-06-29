@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useRecoilValue, useResetRecoilState } from 'recoil'
 import { emailAtom, isSubmitedAtom, userNameAtom } from '../recoil/atom'
 import { Button, Title, Wrapper } from '../components/layout/common';
@@ -20,6 +20,11 @@ const MyPage = () => {
         reset();
         navigate('/');
     };
+
+    useEffect(()=>{
+      window.addEventListener('popstate', handleReset);
+    }, [])
+    
 
   return (
     <Wrapper>
