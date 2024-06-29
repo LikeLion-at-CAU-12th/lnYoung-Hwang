@@ -1,25 +1,25 @@
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import { Button, Wrapper } from '../layout/common'
 import Form from './Form'
-import { ThemeColorContext } from '../../context/context'
-import { useNavigate } from 'react-router-dom'
-import { useSetRecoilState } from 'recoil'
-import { isSubmitedAtom } from '../../recoil/atom'
+import Modal from '../modal/Modal';
+import { ThemeColorContext } from '../../context/context';
 
 const FormSection = () => {
     const mode = useContext(ThemeColorContext);
-    const navigate = useNavigate();
-    const setIsSubmited = useSetRecoilState(isSubmitedAtom);
+    const [modal, setModal] = useState(false);
 
     const handleBtn = () => {
-        setIsSubmited(true);
-        navigate('/mypage');
+        setModal(true);
     }
+
   return (
     <Wrapper>
         <Form type='text' inputType='이름' />
         <Form type='email' inputType='이메일' />
         <Button mode={mode.button} onClick={handleBtn}>제출</Button>
+          {modal && (
+            <Modal setModal={setModal} />
+          )}   
     </Wrapper>
   )
 }

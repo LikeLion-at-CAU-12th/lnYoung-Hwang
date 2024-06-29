@@ -11,10 +11,9 @@ const Layout = ({children}) => {
     const userName = useRecoilValue(userNameAtom);
     const email = useRecoilValue(emailAtom);
     const isSubmited = useRecoilValue(isSubmitedAtom);
-
     const [date, setDate] = useRecoilState(dateAtom);
 
-    var arrDayStr = ['일','월','화','수','목','금','토'];
+    const arrDayStr = ['일','월','화','수','목','금','토'];
     
     useEffect(()=>{
       var nowDate = new Date();
@@ -45,10 +44,8 @@ const Layout = ({children}) => {
             </Header>
             <div>{children}</div>
             <Footer mode={mode.main}>
-              <div>{isSubmited ? `${userName}의 공간 | ${email}` : 'LikeLion FE'}</div>
-                
+              <div>{isSubmited ? `${userName}의 공간 | ${email}` : 'LikeLion FE'}</div>     
                 <div>{date}</div>
-                
             </Footer>
         </Wrapper>
     </ThemeColorContext.Provider>
