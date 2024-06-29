@@ -16,6 +16,8 @@ export const Button = styled.button`
   border-radius: 24px;
   cursor: pointer;
   margin-top: 10px;
+  margin: 1vw;
+  white-space: nowrap;
 `;
 
 export const Title = styled.div`

@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import styled from 'styled-components'
 import { emailAtom, isSubmitedAtom, userNameAtom } from '../../recoil/atom';
 import { Button } from '../layout/common';
 import { useNavigate } from 'react-router-dom'
+import { ThemeColorContext } from '../../context/context'; 
 
 
 const Modal = ( {setModal} ) => {
@@ -11,6 +12,7 @@ const Modal = ( {setModal} ) => {
   const userName = useRecoilValue(userNameAtom);
   const email = useRecoilValue(emailAtom);
   const setIsSubmited = useSetRecoilState(isSubmitedAtom);
+  const mode = useContext(ThemeColorContext);
 
   const handleConfirm = () => {
     setIsSubmited(true);
@@ -24,8 +26,10 @@ const Modal = ( {setModal} ) => {
         <div>정보를 다시 한번 확인해주세요.</div>
         <div>이름: {userName}</div>
         <div>이메일: {email}</div>
-        <Button onClick={()=>setModal(false)}>닫기</Button>
-        <Button onClick={handleConfirm}>확인</Button>
+        <Buttons>
+          <Button onClick={()=>setModal(false)} mode={mode.button}>다시작성</Button>
+          <Button onClick={handleConfirm} mode={mode.button}>확인</Button>
+        </Buttons>
       </Container>
     </ModalBackground>
   )
@@ -45,7 +49,7 @@ const ModalBackground = styled.div`
   align-items: center;
 `
 const Container = styled.div`
-  background-color: skyblue;
+  background-color: #eaeaea;
   width: 70%;
   height: 70%;
   display: flex;
@@ -53,3 +57,11 @@ const Container = styled.div`
   justify-content: center;
   align-items: center;
 `
+
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: row;
+  margin: 3%;
+`
+
+
