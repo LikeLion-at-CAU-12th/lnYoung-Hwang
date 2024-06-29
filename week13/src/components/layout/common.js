@@ -1,0 +1,27 @@
+// src/components/layout/common.js
+import styled from "styled-components";
+
+export const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const Button = styled.button`
+  all: unset;
+  background-color: ${(props) => props.mode};
+  color: black;
+  padding: 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  margin: 1vw;
+  white-space: nowrap;
+`;
+
+export const Title = styled.div`
+  font-size: 30px;
+  margin: 20px;
+`;
+
