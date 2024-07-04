@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from '../hooks/useForm';
 import { login } from '../apis/user';
+import { useRecoilState } from 'recoil';
+import { userLoginAtom } from '../recoil/atom';
 
 const Home = () => {
     const [id, onChangeId] = useForm();
     const [pw, onChangePw] = useForm();
 
+    const [userLogin, setUserLogin] = useRecoilState(userLoginAtom);
     const router = useNavigate();
 
     // localstorage로 token 확인하고 존재하면 mypage로
@@ -15,7 +18,8 @@ const Home = () => {
       const savedAccessToken = localStorage.getItem("access");
       const savedRefreshToken = localStorage.getItem("refresh");
       if(savedAccessToken != null && savedRefreshToken != null) {
-        router("/mypage");
+          setUserLogin(true);
+          router("/mypage");
       }
   }, [])
 
