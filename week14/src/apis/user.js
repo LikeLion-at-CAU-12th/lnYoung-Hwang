@@ -3,6 +3,7 @@ import { getAuthAxios } from "./authAxios";
 
 const baseURL = `http://yangzzago.kro.kr:3000`;
 
+
 export const signUp = async(id, pw, name, age) =>{
     const result = await axios.post(`${baseURL}/signup`,{
         id,
@@ -49,6 +50,6 @@ export const getNewRefreshToken = async() => {
         return result.data;
     } catch(error){
         // 리프레시 토큰이 만료되었을 경우
-        alert("토큰이 만료되었습니다. 다시 로그인해주세요.");
+        return false;
     }
 }
