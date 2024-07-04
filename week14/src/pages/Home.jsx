@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styled from 'styled-components';
 import { Link, useNavigate } from "react-router-dom";
 import { useForm } from '../hooks/useForm';
@@ -9,6 +9,15 @@ const Home = () => {
     const [pw, onChangePw] = useForm();
 
     const router = useNavigate();
+
+    // localstorage로 token 확인하고 존재하면 mypage로
+    useEffect(()=>{
+      const savedAccessToken = localStorage.getItem("access");
+      const savedRefreshToken = localStorage.getItem("refresh");
+      if(savedAccessToken != null && savedRefreshToken != null) {
+        router("/mypage");
+      }
+  }, [])
 
     const onClick = async () => {
         try{
