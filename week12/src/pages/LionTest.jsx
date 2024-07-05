@@ -11,6 +11,7 @@ const LionTest = () => {
 
     //문제 데이터 불러오기
     useEffect(() => {
+        console.log("왜앙대");
         const fetchData = async() => {
             let questions = await getQuestions();
             setQuestions(questions);

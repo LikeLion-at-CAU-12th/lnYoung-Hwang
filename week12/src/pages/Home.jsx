@@ -1,17 +1,76 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useContext, useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from "styled-components";
+import { AuthContext } from '../context/AuthProvider';
+import { getMyPage } from '../apis/user';
+
 
 const Home = () => {
+  const { userLogin, setUserLogin, userName, setUserName } =  useContext(AuthContext);
+
+  const [data, setData] = useState();
+  //const [loading, setLoading] = useState(true);
+
+  const router = useNavigate();
+
+    // 처음에 로그인 여부 확인
+    // localstorage로 token 확인
+    useEffect(()=>{
+      const savedAccessToken = localStorage.getItem("access");
+      const savedRefreshToken = localStorage.getItem("refresh");
+      if(savedAccessToken != null && savedRefreshToken != null) {
+          // 토큰 존재 시
+          getMyPage(localStorage.getItem("access"))
+          .then((data)=>{
+              setData(data);
+              setUserName(data.name);
+              //setLoading(false);
+          }).catch((error)=>{
+              // 토큰 기한 만료 시
+              alert("토큰 기한 만료");
+              window.localStorage.removeItem("access");
+              window.localStorage.removeItem("refresh");
+              router("/login");
+      });
+          setUserLogin(true);
+      }
+  }, [])
+
+  const logout = () => {
+      window.localStorage.removeItem("access");
+      window.localStorage.removeItem("refresh");
+      setUserLogin(false);
+      setUserName("Guest");
+  }
+
+  const totest = () => {
+    if(userLogin === false){
+      alert("로그인 먼저 해주세요");
+    }
+    else{
+      router("/liontest");
+    }
+  }
+
   return (
     <MenuDom>
       <Title>Week 12 Session</Title>
+      <Subtitle>✨ Welcome {userName}님 ✨</Subtitle>
       <StyledLink to="/books">
         📚 Library
       </StyledLink>
-      <StyledLink to="/liontest">
+      <StyledLink onClick={totest}>
         🦁 멋사인 테스트
       </StyledLink>
+      {userLogin ? (
+          <StyledLink onClick={logout}>
+            🐑 로그아웃
+          </StyledLink>
+        ):(
+          <StyledLink to="/login">
+            🫎 로그인
+          </StyledLink>
+        )}
     </MenuDom>
   )
 }
@@ -33,6 +92,14 @@ const Title = styled.div`
   color: #535353;
   font-weight: 700;
 `;
+
+const Subtitle = styled.div`
+  font-size: 20px;
+  color: #535353;
+  font-weight: 700;
+  margin-bottom: 3px;
+  margin-top: 3px;
+`
 
 /* 이미 만들어진 태그를 다른 태그로 바꿀 수 있음 */
 const StyledLink = styled(Link)`
