@@ -59,9 +59,9 @@ const Home = () => {
       <StyledLink to="/books">
         📚 Library
       </StyledLink>
-      <StyledLink onClick={totest}>
+      <StyledButton onClick={totest}>
         🦁 멋사인 테스트
-      </StyledLink>
+      </StyledButton>
       {userLogin ? (
           <StyledLink onClick={logout}>
             🐑 로그아웃
@@ -118,3 +118,18 @@ const StyledLink = styled(Link)`
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 `;
 
+const StyledButton = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 300px;
+  height: 100px;
+  font-size: 25px;
+  color: #4a4a4a;
+  background-color: #b8edfb;
+  border-radius: 20px;
+  cursor: pointer;
+  text-decoration: none;
+  font-weight: 500;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+`
