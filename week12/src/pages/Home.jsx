@@ -9,7 +9,6 @@ const Home = () => {
   const { userLogin, setUserLogin, userName, setUserName } =  useContext(AuthContext);
 
   const [data, setData] = useState();
-  //const [loading, setLoading] = useState(true);
 
   const router = useNavigate();
 
@@ -24,12 +23,13 @@ const Home = () => {
           .then((data)=>{
               setData(data);
               setUserName(data.name);
-              //setLoading(false);
           }).catch((error)=>{
               // 토큰 기한 만료 시
               alert("토큰 기한 만료");
               window.localStorage.removeItem("access");
               window.localStorage.removeItem("refresh");
+              setUserLogin(false);
+              setUserName("Guest");
               router("/login");
       });
           setUserLogin(true);
