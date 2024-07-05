@@ -46,6 +46,7 @@ const Home = () => {
   const totest = () => {
     if(userLogin === false){
       alert("로그인 먼저 해주세요");
+      router("/login")
     }
     else{
       router("/liontest");
