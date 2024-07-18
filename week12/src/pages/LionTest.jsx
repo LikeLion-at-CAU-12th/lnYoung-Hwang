@@ -11,11 +11,16 @@ const LionTest = () => {
 
     //문제 데이터 불러오기
     useEffect(() => {
-        const fetchData = async() => {
-            let questions = await getQuestions();
-            setQuestions(questions);
+        try{
+            const fetchData = async() => {
+                let questions = await getQuestions();
+                setQuestions(questions);
+            }
+            fetchData();
         }
-        fetchData();
+        catch(error){
+            console.log(error);
+        }
     },[]);
 
     //고른 답 담는 함수
